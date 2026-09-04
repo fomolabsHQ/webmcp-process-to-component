@@ -39,6 +39,9 @@ pnpm-debug.log*
 .DS_Store
 Thumbs.db
 
+# TypeScript cache
+*.tsbuildinfo
+
 
 design.md 
 implementation.md 
