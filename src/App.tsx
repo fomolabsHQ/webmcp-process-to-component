@@ -1,10 +1,14 @@
+import { useState } from "react";
 import { Navbar } from "./components/landing/Navbar";
 import { Hero } from "./components/landing/Hero";
 import { ArchitectureDiagram } from "./components/landing/ArchitectureDiagram";
 import { ExampleCards } from "./components/landing/ExampleCards";
 import { Footer } from "./components/landing/Footer";
+import { ReturnAgentFlow } from "./examples/return-agent";
 
 export default function App() {
+  const [activeExample, setActiveExample] = useState<"return-agent" | "insurance-claim" | null>(null);
+
   const scrollToExamples = () => {
     document.getElementById("examples")?.scrollIntoView({ behavior: "smooth" });
   };
@@ -17,10 +21,19 @@ export default function App() {
         <Hero onScrollToExamples={scrollToExamples} />
         <ArchitectureDiagram />
         <ExampleCards
-          onSelectExample={(_id) => {
-            // Interactive components will be connected when synthesized in subsequent steps
+          onSelectExample={(id) => {
+            setActiveExample(id);
           }}
         />
+
+        {/* Modal / Overlay for Active Process Component */}
+        {activeExample === "return-agent" && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm overflow-y-auto">
+            <div className="relative w-full max-w-3xl my-8">
+              <ReturnAgentFlow onClose={() => setActiveExample(null)} />
+            </div>
+          </div>
+        )}
       </main>
 
       <Footer />

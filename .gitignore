@@ -42,9 +42,9 @@ Thumbs.db
 # TypeScript cache
 *.tsbuildinfo
 
-
+terminal.png
 design.md 
 implementation.md 
 process-to-component-example.png
 project-ptc.md 
-
+process-ui desing.png 
